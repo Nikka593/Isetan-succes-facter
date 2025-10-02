@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>静岡伊勢丹イベント 成功要因インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f8fafc;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .kpi-chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 250px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 250px;
+        }
+        .kpi-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .flow-line {
+            width: 2px;
+            background-color: #9ca3af;
+        }
+        .flow-line-h {
+            height: 2px;
+            background-color: #9ca3af;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#073B4C] mb-2">静岡伊勢丹イベント 成功要因分析</h1>
+            <p class="text-lg text-gray-600">チームの力と戦略で目標達成！次につながる成功のポイントを徹底解剖</p>
+        </header>
+
+        <section id="summary" class="mb-16">
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-center text-[#073B4C] mb-8">イベント結果サマリー</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold text-[#118AB2] mb-4">入会数</h3>
+                        <div class="kpi-chart-container">
+                            <canvas id="membershipChart"></canvas>
+                            <div class="kpi-text">
+                                <span class="text-4xl font-extrabold text-[#073B4C]">100%</span>
+                                <span class="block text-gray-500">目標達成</span>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-lg"><span class="font-bold">目標:</span> 50件 / <span class="font-bold">実績:</span> 50件</p>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold text-[#06D6A0] mb-4">アポイント数</h3>
+                        <div class="kpi-chart-container">
+                            <canvas id="appointmentChart"></canvas>
+                            <div class="kpi-text">
+                                <span class="text-4xl font-extrabold text-[#073B4C]">116%</span>
+                                <span class="block text-gray-500">目標達成</span>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-lg"><span class="font-bold">目標:</span> 100件 / <span class="font-bold">実績:</span> 116件</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <h2 class="text-3xl font-bold text-center text-[#073B4C] mb-10">✨ 成功を支えた３つの柱 ✨</h2>
+
+        <div class="space-y-12">
+            
+            <section id="teamwork" class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <h3 class="text-2xl font-bold text-[#118AB2] mb-2">🤝 1. 全員主役のチーム力 (Teamwork)</h3>
+                <p class="text-gray-600 mb-8">個々の能力を最大限に引き出し、相乗効果を生み出す組織力が成功の最大の鍵でした。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <ul class="space-y-4 text-lg">
+                        <li class="flex items-start"><span class="text-[#118AB2] mr-3">●</span><div><strong class="font-bold">全員がエース:</strong> コーチ陣が主体的に動き、1人で1日5アポなど驚異的な成果を記録。</div></li>
+                        <li class="flex items-start"><span class="text-[#118AB2] mr-3">●</span><div><strong class="font-bold">プロの巻き込み:</strong> 外部のイベントプロが参加し、現場の活動基準が飛躍的に向上。</div></li>
+                        <li class="flex items-start"><span class="text-[#118AB2] mr-3">●</span><div><strong class="font-bold">モチベーション維持:</strong> 意図的な声がけで当事者意識を高め、チームの士気を維持。</div></li>
+                        <li class="flex items-start"><span class="text-[#118AB2] mr-3">●</span><div><strong class="font-bold">メンターの姿勢:</strong> 達成へこだわる姿勢がチームに伝播し、「やれる！」という雰囲気を醸成。</div></li>
+                    </ul>
+                    <div>
+                        <h4 class="font-bold text-lg text-center mb-4">戦略的な役割分担</h4>
+                        <div class="flex flex-col items-center p-4 bg-slate-50 rounded-lg">
+                             <div class="bg-[#118AB2] text-white py-2 px-6 rounded-lg shadow-md font-bold">司令塔</div>
+                             <div class="h-8 flow-line"></div>
+                             <div class="flex space-x-4 md:space-x-8 text-center">
+                                 <div class="bg-[#06D6A0] text-white py-2 px-6 rounded-lg shadow-md font-bold">イベントのプロ</div>
+                                 <div class="bg-[#FFD166] text-[#073B4C] py-2 px-6 rounded-lg shadow-md font-bold">FAリーダー</div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 border-t pt-8">
+                    <h4 class="text-xl font-bold text-center text-[#118AB2] mb-6">メンターシップ：チームを「自分ごと」化させる対話術</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-start bg-slate-50 p-4 rounded-lg">
+                            <div class="text-2xl mr-4">🤝</div>
+                            <div>
+                                <h5 class="font-bold">労いと共感</h5>
+                                <p class="text-gray-600">「皆の頑張りは分かっている」と伝え、現状への悔しさに共感する。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start bg-slate-50 p-4 rounded-lg">
+                            <div class="text-2xl mr-4">🚀</div>
+                            <div>
+                                <h5 class="font-bold">環境変化と目標提示</h5>
+                                <p class="text-gray-600">「私が来た。CVJも来る。皆で一つのチームとして230名を目指そう」と宣言し、勝利への道筋と高い目標を示す。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start bg-slate-50 p-4 rounded-lg">
+                            <div class="text-2xl mr-4">💡</div>
+                            <div>
+                                <h5 class="font-bold">当事者意識の醸成</h5>
+                                <p class="text-gray-600">「CVJ任せでは嬉しくないはず。自分の役割でどう貢献するか考え、自分が達成させたんだ！と誇れるように」と問いかける。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start bg-slate-50 p-4 rounded-lg">
+                            <div class="text-2xl mr-4">💬</div>
+                            <div>
+                                <h5 class="font-bold">個別の意思確認</h5>
+                                <p class="text-gray-600">「やってみたい？」と一人ひとりに問いかけ、個人のチャレンジ意欲を引き出し、バックアップを約束する。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="operation" class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <h3 class="text-2xl font-bold text-[#06D6A0] mb-2">⚙️ 2. 戦略的なオペレーション</h3>
+                <p class="text-gray-600 mb-8">緻密な計画と現場での徹底した実行力が、驚異的な数値を叩き出しました。</p>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div>
+                        <h4 class="text-xl font-bold text-center mb-4">アポ獲得効率の劇的向上</h4>
+                        <p class="text-center text-gray-600 mb-4">分業制の確立により、アポ獲得にかかる時間が<strong class="text-[#06D6A0]">5分の1以下</strong>に短縮。</p>
+                        <div class="chart-container">
+                            <canvas id="efficiencyChart"></canvas>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold text-center mb-4">来店率のV字回復</h4>
+                        <p class="text-center text-gray-600 mb-4">徹底したフォローコールにより、来店率が<strong class="text-[#06D6A0]">2倍以上</strong>に向上。</p>
+                        <div class="chart-container">
+                            <canvas id="showRateChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
+                    <div class="bg-slate-50 p-6 rounded-lg">
+                        <h4 class="text-xl font-bold text-gray-700">入会率</h4>
+                        <p class="text-6xl font-extrabold text-[#06D6A0] my-2">70<span class="text-3xl">%</span></p>
+                        <p class="text-gray-600">誰が担当しても高い水準を維持する仕組みを構築。</p>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-lg">
+                        <h4 class="text-xl font-bold text-gray-700">復活入会</h4>
+                        <p class="text-6xl font-extrabold text-[#06D6A0] my-2">3<span class="text-3xl">件</span></p>
+                        <p class="text-gray-600">諦めないアプローチが貴重な追加成果を創出。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="data-driven" class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <h3 class="text-2xl font-bold text-[#FFD166] mb-2">📊 3. データに基づく迅速な意思決定</h3>
+                <p class="text-gray-600 mb-8">リアルタイムな現状把握とスピーディーな判断が、常に主導権を握り続けました。</p>
+                <div class="space-y-6">
+                    <div class="flex items-start bg-slate-50 p-4 rounded-lg">
+                        <div class="text-2xl mr-4">1️⃣</div>
+                        <div>
+                            <h4 class="font-bold text-lg">リアルタイム可視化</h4>
+                            <p class="text-gray-600">ホワイトボードで目標とのGAPを常に共有し、チームの意識を統一。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start bg-slate-50 p-4 rounded-lg">
+                        <div class="text-2xl mr-4">2️⃣</div>
+                        <div>
+                            <h4 class="font-bold text-lg">データ分析と即時アクション</h4>
+                            <p class="text-gray-600">実績データや来店率を分析し、「増員提案」や「フォローTEL徹底」など具体的な次の一手へ繋げた。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start bg-slate-50 p-4 rounded-lg">
+                        <div class="text-2xl mr-4">3️⃣</div>
+                        <div>
+                            <h4 class="font-bold text-lg">アジャイルな作戦会議</h4>
+                            <p class="text-gray-600">「ローリング」と呼ばれる進捗確認会議を起点に、現場の変化に合わせ常に戦術をアップデート。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 border-t pt-8">
+                     <h4 class="text-xl font-bold text-center text-[#FFD166] mb-6">舵取りの基軸：勝利への最短距離を見出す思考法</h4>
+                     <div class="bg-[#073B4C] text-white p-6 rounded-lg shadow-lg text-center">
+                         <p class="text-lg mb-2">営業時間中の思考は、常にこの問いに集中する:</p>
+                         <p class="text-2xl font-bold">「どうすれば入会が増えるか？」</br>「何に時間を使えば勝てるか？」</p>
+                     </div>
+                     <div class="mt-6 text-center text-gray-700">
+                         <h5 class="font-bold text-lg">メンターの役割</h5>
+                         <p>自らが「勝てる環境」を整え、流れを創り出す。<br>（例：拠点確保、スタンディングクロージングの導入）</p>
+                     </div>
+                </div>
+            </section>
+        </div>
+
+        <section id="next-steps" class="mt-16">
+            <h2 class="text-3xl font-bold text-center text-[#073B4C] mb-10">📝 次回に向けた３つのアクションプラン</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-[#FF6B6B]">
+                    <h3 class="text-xl font-bold mb-3 text-[#FF6B6B]">1. 仕込みの早期化と徹底</h3>
+                    <p class="text-gray-600">イベント開始前から勝負を決める準備を。未入会者への先行アプローチや従業員向け施策を早期に実施します。</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-[#FFD166]">
+                    <h3 class="text-xl font-bold mb-3 text-[#FFD166]">2. 先行施策による初速最大化</h3>
+                    <p class="text-gray-600">スタートダッシュで勢いをつけるため、先行特典のポスティングなどを初日から展開できるよう準備を前倒しします。</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-[#118AB2]">
+                    <h3 class="text-xl font-bold mb-3 text-[#118AB2]">3. 成功トークの標準化</h3>
+                    <p class="text-gray-600">属人性を排しチーム全体のパフォーマンスを底上げ。成果の出たトークを分析し、誰でも使えるスクリプトを作成します。</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    const tooltipTitleCallback = {
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    title: function(tooltipItems) {
+                        const item = tooltipItems[0];
+                        let label = item.chart.data.labels[item.dataIndex];
+                        if (Array.isArray(label)) {
+                            return label.join(' ');
+                        } else {
+                            return label;
+                        }
+                    }
+                }
+            },
+            legend: {
+                display: false
+            }
+        }
+    };
+
+    const membershipCtx = document.getElementById('membershipChart').getContext('2d');
+    new Chart(membershipCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['達成'],
+            datasets: [{
+                data: [100],
+                backgroundColor: ['#118AB2'],
+                borderColor: ['#118AB2'],
+                borderWidth: 1,
+                circumference: 360,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            rotation: -90,
+            cutout: '80%',
+            plugins: {
+                tooltip: { enabled: false },
+                legend: { display: false }
+            }
+        }
+    });
+
+    const appointmentCtx = document.getElementById('appointmentChart').getContext('2d');
+    new Chart(appointmentCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['達成'],
+            datasets: [{
+                data: [100],
+                backgroundColor: ['#06D6A0'],
+                borderColor: ['#06D6A0'],
+                borderWidth: 1,
+                 circumference: 360,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            rotation: -90,
+            cutout: '80%',
+            plugins: {
+                tooltip: { enabled: false },
+                legend: { display: false }
+            }
+        }
+    });
+    
+    const efficiencyCtx = document.getElementById('efficiencyChart').getContext('2d');
+    new Chart(efficiencyCtx, {
+        type: 'line',
+        data: {
+            labels: ['10週目', '12週目'],
+            datasets: [{
+                label: 'アポ獲得時間 (H/件)',
+                data: [2.7, 0.5],
+                backgroundColor: 'rgba(6, 214, 160, 0.2)',
+                borderColor: '#06D6A0',
+                borderWidth: 3,
+                fill: true,
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            ...tooltipTitleCallback,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: '時間 / 件'
+                    }
+                }
+            }
+        }
+    });
+
+    const showRateCtx = document.getElementById('showRateChart').getContext('2d');
+    new Chart(showRateCtx, {
+        type: 'bar',
+        data: {
+            labels: ['初日', '最終日'],
+            datasets: [{
+                label: '来店率 (%)',
+                data: [41, 87],
+                backgroundColor: ['rgba(255, 107, 107, 0.7)', 'rgba(6, 214, 160, 0.7)'],
+                borderColor: ['#FF6B6B', '#06D6A0'],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            ...tooltipTitleCallback,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    title: {
+                        display: true,
+                        text: '来店率 (%)'
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
+
+</body>
+</html>
+
